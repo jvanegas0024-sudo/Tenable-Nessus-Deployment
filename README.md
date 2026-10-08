@@ -12,7 +12,7 @@ This project documents the deployment of Tenable Nessus on an Ubuntu Server virt
 ### Tools Used
 * [VMware Workstation](https://www.vmware.com/products/workstation-pro.html)
 * [Ubuntu Server ISO](https://ubuntu.com/download/server)
-* [Tenable Nessus (Sign up requiered)](https://www.tenable.com/tenable-nessus-for-education)
+* [Tenable Nessus (Sign up required)](https://www.tenable.com/tenable-nessus-for-education)
 * Secure Copy Protocol (SCP)
 
 ## Steps
