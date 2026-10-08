@@ -18,12 +18,12 @@ This project documents the deployment of Tenable Nessus on an Ubuntu Server virt
 ## Steps
 
 ### 1. Virtual Machine Provisioning
-* Open VMware and click **Create a New Virtual Machine**[cite: 1].
-* Select **Typical configuration** in the wizard and click Next[cite: 1].
-* Choose the **Guest OS** by browsing to the Ubuntu Server image and click Next[cite: 1].
-* Name the virtual machine `Ubuntu-Tenable`[cite: 1].
-* Set the disk capacity to **60GB** (40GB+ recommended) and store the virtual disk as a single file, then click Next[cite: 1].
-* Click **Customize Hardware** and allocate **8GB of RAM** and **4 processors**, then click Finish[cite: 1].
+* Open VMware and click **Create a New Virtual Machine**.
+* Select **Typical configuration** in the wizard and click Next.
+* Choose the **Guest OS** by browsing to the Ubuntu Server image and click Next.
+* Name the virtual machine `Ubuntu-Tenable`.
+* Set the disk capacity to **60GB** (40GB+ recommended) and store the virtual disk as a single file, then click Next.
+* Click **Customize Hardware** and allocate **8GB of RAM** and **4 processors**, then click Finish.
 
 ![VMware Configuration](images/vmwaremainmenu.png)
 ![VMware Configuration](images/vmwizard.png)
@@ -32,12 +32,12 @@ This project documents the deployment of Tenable Nessus on an Ubuntu Server virt
 
 
 ### 2. Ubuntu Server Configuration
-* Proceed through the Ubuntu installer using default options until reaching the Profile Configuration[cite: 1].
-* Create a username, server name, and password[cite: 1].
-* Skip Ubuntu Pro configuration for now[cite: 1].
-* Select the option to install the **OpenSSH server**[cite: 1].
-* Once the installation completes, select **Reboot Now**[cite: 1].
-* After rebooting, log in and update the system packages by running `sudo apt update && sudo apt upgrade -y`[cite: 1].
+* Proceed through the Ubuntu installer using default options until reaching the Profile Configuration.
+* Create a username, server name, and password.
+* Skip Ubuntu Pro configuration for now.
+* Select the option to install the **OpenSSH server**.
+* Once the installation completes, select **Reboot Now**.
+* After rebooting, log in and update the system packages by running `sudo apt update && sudo apt upgrade -y`.
 
 ![Ubuntu Setup](images/ubuntutypeinstallation.png)
 ![Ubuntu Setup](images/ubuntustorage.png)
@@ -47,21 +47,20 @@ This project documents the deployment of Tenable Nessus on an Ubuntu Server virt
 
 
 ### 3. Tenable Nessus Installation
-* Transfer the `Nessus.deb` file to the VM under the `/home/user/tmp` path using the SCP command[cite: 1].
-* Navigate to the directory (`cd /tmp`) and unpack the installation file by running `sudo dpkg -i Nessus-*.deb`[cite: 1].
-* Install any missing dependencies by running `sudo apt -f install -y`[cite: 1].
-* Start the Nessus service by running `sudo systemctl start nessusd.service`[cite: 1].
-* Verify the service is running with `sudo systemctl status nessusd.service`[cite: 1].
-* Verify the web interface is accessible by navigating to `https://<VM's IP>:8834`[cite: 1].
+* Transfer the `Nessus.deb` file to the VM under the `/home/user/tmp` path using the SCP command.
+* Navigate to the directory (`cd /tmp`) and unpack the installation file by running `sudo dpkg -i Nessus-*.deb`.
+* Install any missing dependencies by running `sudo apt -f install -y`.
+* Start the Nessus service by running `sudo systemctl start nessusd.service`.
+* Verify the service is running with `sudo systemctl status nessusd.service`.
+* Verify the web interface is accessible by navigating to `https://<VM's IP>:8834`.
 
-![Nessus Service Status](images/placeholder3.png)
 
 ### 4. Nessus Activation & Account Setup via CLI
-* Register the Nessus instance using your activation code by running `sudo /opt/nessus/sbin/nessuscli fetch --register <Your-activation-code>`[cite: 1].
-* Create an administrative account by running `sudo /opt/nessus/sbin/nessuscli adduser <nameoftheuser>` and follow the command prompts[cite: 1].
-* Restart the Nessus service to apply the configuration by running `sudo systemctl restart nessusd.service` (or `bin/systemctl restart nessusd.service`)[cite: 1].
-* Go back to the web UI and hit refresh[cite: 1].
-* Log in with the newly created account[cite: 1].
+* Register the Nessus instance using your activation code by running `sudo /opt/nessus/sbin/nessuscli fetch --register <Your-activation-code>`.
+* Create an administrative account by running `sudo /opt/nessus/sbin/nessuscli adduser <nameoftheuser>` and follow the command prompts.
+* Restart the Nessus service to apply the configuration by running `sudo systemctl restart nessusd.service` (or `bin/systemctl restart nessusd.service`).
+* Go back to the web UI and hit refresh.
+* Log in with the newly created account.
 
 ![Nessus Web UI](images/nessuswelcomepage.png)
 ![Nessus Web UI](images/hostdiscovery.png)
