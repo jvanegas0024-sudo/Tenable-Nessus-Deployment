@@ -1,0 +1,39 @@
+Create the Virtual Machine for Ubuntu
+1)Go to VMware and click create new VM
+2)When the wizard tab shows up pick Typical configuration and click Next
+3)On the Guest OS click Browse, select the Ubuntu sever image, and click next
+4)For the VM name I picked Ubuntu-Tenable
+5)For Disk capacity 40GB+ is recommended, I used 60GB and I stored the disk as a single file, click Next
+6)Click on customize hardware and change RAM to 8GB, change the number of processors to 4, and click finish
+
+Setting Up the Ubuntu sever
+1) Once the VM loads, select all the default options until you get to the Profile Configuration.
+2)Once you get to the Profile conf. create a username, server name, and a password.
+3) Skip ubunto pro for now
+4)Install openssh sever
+5) Once installation is complete select reboot now
+6)run sudo apt update && sudo apt upgrade -y
+
+Setting up Tenable
+1) moved the Nessus.deb file to the VM on the :/home/user/tmp path  using the SCP command.
+2) cd to /tmp and run the following commands: 
+sudo dpkg -i Nessus-*.deb
+sudo apt -f install -y
+sudo systemctl start nessusd.service
+sudo systemctl status nessusd.service
+3) verify you can access the web ui by typing the https://<VM's IP>:8834
+
+Activate the Tenable account through the CLI
+1)run sudo /opt/nessus/sbin/nessuscli fetch --register <Your-activation-code>
+2)add the account and password to log in by running sudo /opt/nessus/sbin/nessuscli adduser <nameoftheuser> and follow prompts
+3) run the command bin/systemctl restart nessusd.service to restart the service
+4) go back to the web ui and hit refresh
+5) log in with the account created
+
+Uncredentialed scan
+1) for an Uncredentialed scan click on new scan on the top right corner of the home page and select basic network scan
+2)under name I named it uncredentialed_scan_media_sever, gave it a short description, save it to My scans folder, and gave it the target address of my media server.
+3) after filling out the information click save and click the lauch button that's on the far right.
+4) create a report 
+5) research the solution for remediation, the only vulnerability I found was that signing is not required on the remote SMB server.
+6) from the ubuntu server I connected to the Media server via ssh and changed the smbglb.conf files to require signing.
